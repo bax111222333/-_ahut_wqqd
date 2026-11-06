@@ -1,0 +1,16 @@
+name: 每晚自动签到
+on:
+  schedule:
+    - cron: '50 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  signin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: 运行签到
+        run: python main_sync.py
